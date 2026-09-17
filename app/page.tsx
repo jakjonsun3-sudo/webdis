@@ -1,0 +1,24 @@
+'use client'
+
+import { motion, useScroll, useTransform } from 'framer-motion'
+import { useRef } from 'react'
+
+const services = ['Slab Foundation Repair','Pier & Beam Repair','House Raising','Drainage Solutions','Concrete Repair','Root Barrier']
+const areas = ['Houston','Sugar Land','Katy','Pearland','Missouri City','Rosenberg','Richmond','Stafford']
+
+export default function Home(){
+ const ref=useRef(null); const {scrollYProgress}=useScroll({target:ref,offset:['start start','end start']}); const scale=useTransform(scrollYProgress,[0,.7],[1,1.12]); const y=useTransform(scrollYProgress,[0,.7],[0,80])
+ return <main ref={ref}>
+  <nav><div className="logo"><span>STAR</span> TECHN</div><div className="navlinks"><a href="#services">Services</a><a href="#process">Process</a><a href="#reviews">Reviews</a><a href="#areas">Service Area</a></div><a className="navcta" href="tel:18324895484">Call 832.489.5484</a></nav>
+  <section className="hero"><motion.div className="heroimage" style={{scale,y}}/><div className="shade"/><div className="heroContent"><p className="eyebrow">HOUSTON FOUNDATION SPECIALISTS · EST. 2000s</p><h1>THE FOUNDATION<br/><i>UNDERNEATH</i> IT ALL.</h1><p className="lead">Precision foundation repair for Houston-area homes. Built on experience, engineered for the long term.</p><div className="actions"><a className="primary" href="tel:18324895484">SCHEDULE A FREE INSPECTION <span>↗</span></a><a className="ghost" href="#services">Explore our work ↓</a></div></div><div className="heroMeta"><span>01 — 06</span><span>FOUNDATION / REPAIR / HOUSTON TX</span></div></section>
+  <section className="trust"><div><b>5.0★</b><span>260+ CUSTOMER REVIEWS</span></div><div><b>A+</b><span>BBB ACCREDITED</span></div><div><b>15+</b><span>YEARS EXPERIENCE</span></div><div><b>∞</b><span>TRANSFERABLE WARRANTY*</span></div></section>
+  <section className="intro"><p className="eyebrow">01 / KNOW THE SIGNS</p><h2>Your house<br/><em>is talking.</em></h2><p className="bodycopy">Cracks, uneven floors, sticking doors and gaps around windows can be early signals of foundation movement. We inspect the structure, identify the cause and recommend the right repair—not the most expensive one.</p><div className="symptoms"><span>01 CRACKS</span><span>02 UNEVEN FLOORS</span><span>03 STICKING DOORS</span><span>04 WALL GAPS</span></div></section>
+  <section id="services" className="services"><div className="sectionhead"><p className="eyebrow">02 / OUR EXPERTISE</p><h2>Built to <em>correct.</em></h2></div><div className="servicegrid">{services.map((s,i)=><motion.article key={s} whileHover={{y:-8}}><span>0{i+1}</span><h3>{s}</h3><p>Targeted solutions designed around the structure, soil and conditions of your property.</p><a href="tel:18324895484">Learn more ↗</a></motion.article>)}</div></section>
+  <section id="process" className="process"><div><p className="eyebrow">03 / THE PROCESS</p><h2>Clear from<br/><em>day one.</em></h2></div><div className="steps">{[['01','Inspect','A thorough evaluation of your home and foundation.'],['02','Diagnose','We identify movement, cause and the appropriate solution.'],['03','Repair','Our crew executes the work with precision and care.'],['04','Protect','We stand behind the repair and help protect your investment.']].map(x=><div className="step" key={x[0]}><b>{x[0]}</b><h3>{x[1]}</h3><p>{x[2]}</p></div>)}</div></section>
+  <section className="statement"><p>FOUNDATION REPAIR SHOULD FEEL<br/><strong>LIKE A SOLUTION.</strong></p></section>
+  <section id="reviews" className="reviews"><p className="eyebrow">04 / CUSTOMER VOICE</p><h2>Trusted where<br/><em>it matters.</em></h2><div className="review"><span>★★★★★</span><blockquote>“Professional from the first inspection through the completion of the job. Everything was explained clearly and the crew kept us informed throughout the process.”</blockquote><p>— STAR TECHN CUSTOMER</p></div></section>
+  <section id="areas" className="areas"><div><p className="eyebrow">05 / WHERE WE WORK</p><h2>Houston<br/><em>& beyond.</em></h2></div><div className="arealist">{areas.map((a,i)=><span key={a}><small>0{i+1}</small>{a}</span>)}</div></section>
+  <section className="cta"><p className="eyebrow">06 / TAKE THE FIRST STEP</p><h2>DON'T WAIT FOR<br/>THE CRACK TO <em>GROW.</em></h2><p>Schedule your foundation inspection and get a clear path forward.</p><a className="primary" href="tel:18324895484">SCHEDULE A FREE INSPECTION ↗</a></section>
+  <footer><div className="logo"><span>STAR</span> TECHN</div><p>Foundation repair for Houston, Texas and surrounding communities.</p><a href="tel:18324895484">832.489.5484</a><small>© {new Date().getFullYear()} Star Techn Foundation Repair. All rights reserved.</small></footer>
+ </main>
+}
